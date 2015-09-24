@@ -1,0 +1,60 @@
+{% load static %}
+
+<!-- begin:header -->
+<div id="header" class="heading" style="background-image: url({% static 'website/img/img01.jpg' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12">
+                <div class="quick-search">
+                    <div class="row">
+                        <form role="form" action="{% url 'search' %}" method="GET" data-persist="garlic" data-domain="true" data-destroy="false">
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/categories.html" %}
+                                </div>
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/bedrooms.html" %}
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/cities.html" %}
+                                </div>
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/min_prices.html" %}
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/neighbourhoods.html" %}
+                                </div>
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/max_prices.html" %}
+                                </div>
+                            </div>
+                            <!-- break -->
+                            <div class="col-md-3 col-sm-3 col-xs-6">
+                                <div class="form-group">
+                                    {% include "listing/partials/fields/listing_types.html" %}
+                                </div>
+                                <div class="form-group">
+                                    <label for="maxprice">&nbsp;</label>
+                                    <input type="submit" value="Pesquisar" class="btn btn-primary btn-block">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'search' %}">Pesquisa</a></li>
+                    <li class="active">Bauru</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:header -->

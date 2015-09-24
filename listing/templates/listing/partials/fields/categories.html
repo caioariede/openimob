@@ -1,0 +1,6 @@
+<label for="category">Tipo</label>
+<select class="form-control" name="category" id="category">
+    {% for category in categories %}
+        <option value="{{ category.slug }}">{{ category }}</option>
+    {% endfor %}
+</select>

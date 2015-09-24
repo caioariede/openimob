@@ -1,0 +1,25 @@
+{% load wagtailimages_tags %}
+
+<div class="property-image">
+    {% image listing.cover.image fill-358x238-c100 as img %}
+    <img src="{{ img.url }}" alt="{{ listing }}">
+    <div class="property-price">
+        <h4>{{ listing.get_parent }}</h4>
+        {% if price_display == 'sell' or not listing.rent_price %}
+            <span>{{ listing.sell_price_display }}</span>
+        {% else %}
+            <span>{{ listing.rent_price_display }}<small>/mês</small></span>
+        {% endif %}
+    </div>
+</div>
+
+<div class="property-content listing-same-height">
+    <h3><a href="{{ listing.url }}">{{ listing }}</a> <small>{{ listing.condominium|default:listing.neighbourhood }}, {{ listing.city }}</small></h3>
+    {{ listing.details|safe|truncatechars_html:140|linebreaks }}
+</div>
+
+<div class="property-features">
+    {% if listing.size_of_land %}<span><i class="fa fa-home"></i> {{ listing.size_of_land }} m<sup>2</sup></span>{% endif %}
+    {% if listing.bedrooms %}<span><i class="fa fa-hdd-o"></i> {{ listing.bedrooms }} quartos</span>{% endif %}
+    {% if listing.cars %}<span><i class="fa fa-car"></i> {{ listing.cars }} vagas</span>{% endif %}
+</div>

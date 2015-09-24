@@ -1,0 +1,11 @@
+{% overextends "wagtailadmin/pages/create.html" %}
+
+{% block js %}
+    <script type="text/javascript">
+        // used by dashboard.js
+        var parent_page = {
+            title: '{{ parent_page.title }}', slug: '{{ parent_page.slug }}'
+        }
+    </script>
+    {{ block.super }}
+{% endblock %}

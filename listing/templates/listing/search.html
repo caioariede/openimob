@@ -1,0 +1,116 @@
+{% extends "base.html" %}
+
+{% load listing_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        var min_max_prices_json = {% print_listing_min_max_prices_json %};
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% get_listing_categories as categories %}
+    {% get_listing_cities as cities %}
+
+    {% include 'listing/partials/search_header.html' %}
+
+    <!-- begin:content -->
+    <div id="content">
+        <div class="container">
+            <div class="row">
+                <!-- begin:article -->
+                <div class="col-md-9 col-md-push-3">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-title heading-title-alt">
+                                <h3>Resultados da pesquisa</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- begin:sorting -->
+                    <div class="row sort">
+                        <div class="col-md-4 col-sm-4 col-xs-12">
+                            <span>Exibindo <strong>{{ per_page }}</strong> resultados de <strong>{{ total }}</strong>.</span>
+                        </div>
+                        <div class="col-md-8 col-sm-8 col-xs-12 text-right">
+                            Ordenar por:
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {% if sort == 'lower_price' %}Menores preços
+                                    {% elif sort == 'higher_price' %}Maiores preços
+                                    {% else %}Mais recentes
+                                    {% endif %}
+                                    <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu">
+                                    <li><a href="{% update_querystring request page=1 sort='most_recent' %}">Mais recentes</a></li>
+                                    <li><a href="{% update_querystring request page=1 sort='lower_price' %}">Menores preços</a></li>
+                                    <li><a href="{% update_querystring request page=1 sort='higher_price' %}">Maiores preços</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end:sorting -->
+
+                    <!-- begin:product -->
+                    <div class="row container-realestate">
+                        {% for listing in listings %}
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="property-container">
+                                {% include "listing/partials/listing.html" %}
+                            </div>
+                        </div>
+                        <!-- break -->
+                        {% endfor %}
+                    </div>
+                    <!-- end:product -->
+
+                    <!-- begin:pagination -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="pagination">
+                                {% if page_obj.has_previous %}
+                                    <li>
+                                        <a href="{% update_querystring request page=page_obj.previous_page_number %}">&laquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="disabled">
+                                        <a href="#">&laquo;</a>
+                                    </li>
+                                {% endif %}
+                                {% for page in page_obj.paginator.page_range %}
+                                    {% if page != page_obj.number %}
+                                        <li><a href="{% update_querystring request page=page %}">{{ page }}</a></li>
+                                    {% else %}
+                                        <li class="active"><a href="{% update_querystring request page=page %}">{{ page }} <span class="sr-only">(atual)</span></a></li>
+                                    {% endif %}
+                                {% endfor %}
+                                {% if page_obj.has_next %}
+                                    <li>
+                                        <a href="{% update_querystring request page=page_obj.next_page_number %}">&raquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="disabled">
+                                        <a href="#">&raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- end:pagination -->
+                </div>
+                <!-- end:article -->
+
+                <!-- begin:sidebar -->
+                <div class="col-md-3 col-md-pull-9 sidebar">
+                    {% include 'listing/partials/sidebar.html' %}
+                </div>
+                <!-- end:sidebar -->
+            </div>
+        </div>
+    </div>
+    <!-- end:content -->
+{% endblock content %}

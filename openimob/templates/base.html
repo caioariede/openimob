@@ -1,0 +1,222 @@
+{% load static wagtailuserbar %}
+
+{% load listing_tags %}
+
+{% get_listing_categories as categories %}
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+        <meta name="description" content="arillo is responsive html real estate theme">
+        <meta name="author" content="afriq yasin ramadhan">
+        <link rel="shortcut icon" href="{% static 'website/img/favicon.png' %}">
+
+        <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="{% static 'website/css/bootstrap.css' %}" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,800' rel='stylesheet' type='text/css'>
+        <link href="{% static 'website/css/font-awesome.min.css' %}" rel="stylesheet">
+        <link href="{% static 'website/css/style.css' %}" rel="stylesheet">
+        <link href="{% static 'website/css/responsive.css' %}" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+        {% block extra_css %}
+            {# Override this in templates to add extra stylesheets #}
+        {% endblock %}
+    </head>
+
+    <body id="top" class="{% block body_class %}{% endblock %}">
+        {% wagtailuserbar %}
+
+        <!-- begin:navbar -->
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-top">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/"><span>open<strong>imob</strong></span></a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="navbar-top">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="active"><a href="/">Início</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Imóveis <b class="caret"></b></a>
+                            <ul class="dropdown-menu">
+                                {% for category in categories %}
+                                    <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </li>
+                        <li><a href="#" class="signup" data-toggle="modal" data-target="#modal-signup">Entre em contato</a></li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container -->
+        </nav>
+        <!-- end:navbar -->
+
+        {% block content %}{% endblock %}
+
+        <!-- begin:footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="widget">
+                            <h3>Tipos de imóveis</h3>
+                            <ul class="list-unstyled">
+                                {% for category in categories %}
+                                    <li><a href="{{ category.get_absolute_url }}">{{ category }}</a></li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- break -->
+                    <div class="col-md-3 col-sm-6 col-xs-12 col-md-offset-6">
+                        <div class="widget">
+                            <h2>openimob</h2>
+                            <address>
+                                <strong>Real estate theme.</strong><br>
+                                9.5 Main Street, Jjrn Plrt Btl<br>
+                                <br>
+                                Telp. : +62-345678910<br>
+                                Email : hello@arillo.com
+                            </address>
+                        </div>
+                    </div>
+                    <!-- break -->
+                </div>
+                <!-- break -->
+
+                <!-- begin:copyright -->
+                <div class="row">
+                    <div class="col-md-12 copyright">
+                        <p>Theme : Arillo 1.0 Designed by <strong>avriqqlabs.</strong></p>
+                        <a href="#top" class="btn btn-primary scroltop"><i class="fa fa-angle-up"></i></a>
+                        <ul class="list-inline social-links">
+                            <li><a href="#" class="icon-twitter" rel="tooltip" title="" data-placement="bottom" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" class="icon-facebook" rel="tooltip" title="" data-placement="bottom" data-original-title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" class="icon-gplus" rel="tooltip" title="" data-placement="bottom" data-original-title="Gplus"><i class="fa fa-google-plus"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- end:copyright -->
+
+            </div>
+        </div>
+        <!-- end:footer -->
+
+        <!-- begin:modal-signin -->
+        <div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="modal-signin" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sign in</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="emailAddress">Email address</label>
+                                <input type="email" class="form-control input-lg" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="forget"> Keep me logged in
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Don't have account ? <a href="#modal-signup"  data-toggle="modal" data-target="#modal-signup">Sign up here.</a></p>
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign in">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:modal-signin -->
+
+        <!-- begin:modal-signup -->
+        <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="modal-signup" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title">Sign up</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="email" class="form-control input-lg" placeholder="Enter email">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg" placeholder="Password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control input-lg" placeholder="Confirm Password">
+                            </div>
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="agree"> Agree to our <a href="#">terms of use</a> and <a href="#">privacy policy</a>
+                                </label>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <p>Already have account ? <a href="#modal-signin" data-toggle="modal" data-target="#modal-signin">Sign in here.</a></p>
+                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign up">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end:modal-signup -->
+
+        {% block extra_js %}
+            {# Override this in templates to add extra javascript #}
+        {% endblock %}
+
+        <!-- Bootstrap core JavaScript
+        ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="{% static 'website/js/jquery.js' %}"></script>
+        <script src="{% static 'website/js/bootstrap.js' %}"></script>
+        <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false&amp;language=en"></script>
+        <script src="{% static 'website/js/gmap3.min.js' %}"></script>
+        <script src="{% static 'website/js/jquery.easing.js' %}"></script>
+        <script src="{% static 'website/js/jquery.jcarousel.min.js' %}"></script>
+        <script src="{% static 'website/js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'website/js/masonry.pkgd.min.js' %}"></script>
+        <script src="{% static 'website/js/jquery.backstretch.js' %}"></script>
+        <script src="{% static 'website/js/script.js' %}"></script>
+
+        {# Global javascript #}
+        <script type="text/javascript" src="{% static 'js/jquery.equalheights.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/garlic.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/openimob.js' %}"></script>
+    </body>
+</html>

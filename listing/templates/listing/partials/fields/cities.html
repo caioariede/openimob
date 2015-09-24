@@ -1,0 +1,6 @@
+<label for="city">Cidade</label>
+<select class="form-control" name="city" id="city" data-neighbourhood-options-url="{% url 'ajax_neighbourhoods' %}">
+    {% for city in cities %}
+    <option value="{{ city.slug }}">{{ city }}</option>
+    {% endfor %}
+</select>

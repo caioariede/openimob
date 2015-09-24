@@ -1,0 +1,10 @@
+{% overextends "wagtailadmin/pages/edit.html" %}
+
+{% block js %}
+    <script type="text/javascript">
+        // used by dashboard.js
+        // prevents slugs from changing every time the page is updated
+        var original_page_slug = '{{ page.slug }}';
+    </script>
+    {{ block.super }}
+{% endblock %}

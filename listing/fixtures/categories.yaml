@@ -1,0 +1,157 @@
+# vim: sw=2:sts=2:ts=2:bs=2
+
+
+# Imoveis
+- model: wagtailcore.page
+  pk: 9
+  fields:
+    content_type: [listing, listingspage]
+    depth: 3
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 5
+    path: '000100010002'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: imoveis
+    title: Imóveis
+    url_path: /home/listings/
+
+- model: listing.listingspage
+  pk: 9
+  fields: {}
+
+
+# Apartamento
+- model: wagtailcore.page
+  pk: 4
+  fields:
+    content_type: [listing, categorypage]
+    depth: 4
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 0
+    path: '0001000100020001'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: apartamento
+    title: Apartamento
+    url_path: /home/listings/apartamento/
+
+- model: listing.categorypage
+  pk: 4
+  fields: {}
+
+
+# Casas
+- model: wagtailcore.page
+  pk: 5
+  fields:
+    content_type: [listing, categorypage]
+    depth: 4
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 0
+    path: '0001000100020002'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: casa
+    title: Casa
+    url_path: /home/listings/casa/
+
+- model: listing.categorypage
+  pk: 5
+  fields: {}
+
+
+# Comercial
+- model: wagtailcore.page
+  pk: 6
+  fields:
+    content_type: [listing, categorypage]
+    depth: 4
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 0
+    path: '0001000100020003'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: comercial
+    title: Comercial
+    url_path: /home/listings/comercial/
+
+- model: listing.categorypage
+  pk: 6
+  fields: {}
+
+
+# Terreno
+- model: wagtailcore.page
+  pk: 7
+  fields:
+    content_type: [listing, categorypage]
+    depth: 4
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 0
+    path: '0001000100020004'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: terreno
+    title: Terreno
+    url_path: /home/listings/terreno/
+
+- model: listing.categorypage
+  pk: 7
+  fields: {}
+
+
+# Rural
+- model: wagtailcore.page
+  pk: 8
+  fields:
+    content_type: [listing, categorypage]
+    depth: 4
+    expire_at: null
+    expired: false
+    go_live_at: null
+    has_unpublished_changes: false
+    live: true
+    locked: false
+    numchild: 0
+    path: '0001000100020005'
+    search_description: ''
+    seo_title: ''
+    show_in_menus: false
+    slug: rural
+    title: Rural
+    url_path: /home/listings/rural/
+
+- model: listing.categorypage
+  pk: 8
+  fields: {}

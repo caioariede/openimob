@@ -1,0 +1,17 @@
+{% overextends "wagtailadmin/base.html" %}
+
+{% load static %}
+
+{% block js %}
+    {{ block.super }}
+    <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+    <script type="text/javascript" src="{% static 'admin/js/urlify.js' %}"></script>
+    <script type="text/javascript" src="{% static 'dashboard/js/dashboard.js' %}"></script>
+{% endblock %}
+
+{% block css %}
+    {{ block.super }}
+    <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/select2.wagtail.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'dashboard/css/dashboard.css' %}">
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% load listing_tags %}
+{% load wagtailimages_tags %}
+
+{% block body_class %}template-{{ self.get_verbose_name|slugify }}{% endblock %}
+
+{% block extra_js %}
+    <script type="text/javascript">
+        var min_max_prices_json = {% print_listing_min_max_prices_json %};
+    </script>
+{% endblock %}
+
+{% block content %}
+    {% get_listing_categories as categories %}
+    {% get_listing_cities as cities %}
+    {% get_random_listings as random_listings %}
+
+    <!-- begin:header -->
+    <div id="header" class="header-slide" data-images="{% static 'website/slide/bg01.jpg' %},{% static 'website/slide/bg02.jpg' %},{% static 'website/slide/bg03.jpg' %}">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="quick-search">
+                        <div class="row">
+                            <form role="form" action="{% url 'search' %}" method="GET" data-persist="garlic" data-domain="true" data-destroy="false">
+                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/categories.html" %}
+                                    </div>
+                                </div>
+                                <!-- break -->
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/cities.html" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/listing_types.html" %}
+                                    </div>
+                                </div>
+                                <!-- break -->
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/neighbourhoods.html" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/bedrooms.html" %}
+                                    </div>
+                                </div>
+                                <!-- break -->
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/min_prices.html" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6">
+                                    <div class="form-group">
+                                        {% include "listing/partials/fields/max_prices.html" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-12 col-sm-12"><input type="submit" value="Pesquisar" class="btn btn-primary btn-lg btn-block"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end:header -->
+
+    <!-- begin:content -->
+    <div id="content">
+        <div class="container">
+            {% with sell_listings=random_listings.sell %}
+                {% if sell_listings %}
+                    <!-- begin:for-sale -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-title">
+                                <h2>Imóveis para venda</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for listing in sell_listings %}
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="property-container">
+                                    {% include "listing/partials/listing.html" with price_display='sell' %}
+                                </div>
+                            </div>
+                            <!-- break -->
+                        {% endfor %}
+                    </div>
+                    <!-- end:for-sale -->
+                {% endif %}
+            {% endwith %}
+
+            {% with rent_listings=random_listings.rent %}
+                {% if rent_listings %}
+                    <!-- begin:for-rent -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="heading-title">
+                                <h2>Imóveis para locação</h2>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        {% for listing in rent_listings %}
+                            <div class="col-md-6 col-sm-12 col-xs-12">
+                                <div class="property-container">
+                                    {% include "listing/partials/small_listing.html" with price_display='rent' %}
+                                </div>
+                            </div>
+                            <!-- break -->
+                        {% endfor %}
+                    </div>
+                    <!-- end:for-rent -->
+                {% endif %}
+            {% endwith %}
+        </div>
+    </div>
+    <!-- end:content -->
+{% endblock content %}

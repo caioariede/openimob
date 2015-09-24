@@ -1,0 +1,39 @@
+{% load listing_tags %}
+
+{% if condominiums %}
+    <div class="widget widget-sidebar widget-white">
+        <div class="widget-header">
+            <h3>Condomínios</h3>
+        </div>    
+        <ul class="list-check">
+            {% for condominium in condominiums %}
+                <li>
+                    <a href="{% url 'search' %}{% update_querystring request _path='' _kwargs=condominium.2 %}" data-update-neighbourhood="{{ condominium.2 }}">
+                        {{ condominium.0 }}
+                    </a>
+                    ({{ condominium.1 }})
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- break -->
+{% endif %}
+
+{% if neighbourhoods %}
+    <div class="widget widget-sidebar widget-white">
+        <div class="widget-header">
+            <h3>Bairros</h3>
+        </div>    
+        <ul class="list-check">
+            {% for neighbourhood in neighbourhoods %}
+                <li>
+                    <a href="{% url 'search' %}{% update_querystring request _path='' _kwargs=neighbourhood.2 %}" data-update-neighbourhood="{{ neighbourhood.2 }}">
+                        {{ neighbourhood.0 }}
+                    </a>
+                    ({{ neighbourhood.1 }})
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    <!-- break -->
+{% endif %}

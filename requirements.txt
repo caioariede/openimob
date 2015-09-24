@@ -1,0 +1,15 @@
+# wagtail requirements
+Django>=1.8,<1.9
+wagtail==1.1
+
+# openimob requirements
+psycopg2==2.6.1
+PyYAML==3.11
+
+django-extensions==1.5.6
+django-bitfield==1.8.0
+django-location-field==1.6.1
+django-input-mask==1.6.1
+django-overextends==0.4.0
+django-modelcluster==0.6.2
+django-select2==4.3.1

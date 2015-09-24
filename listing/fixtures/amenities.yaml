@@ -1,0 +1,126 @@
+# vim: sw=2:sts=2:ts=2:bs=2
+
+- model: listing.amenity
+  pk: 1
+  fields:
+    name: WC para empregados
+
+- model: listing.amenity
+  pk: 3
+  fields:
+    name: Área de serviço
+
+- model: listing.amenity
+  pk: 4
+  fields:
+    name: Armário embutido
+
+- model: listing.amenity
+  pk: 5
+  fields:
+    name: Ar condicionado
+
+- model: listing.amenity
+  pk: 6
+  fields:
+    name: Varanda
+
+- model: listing.amenity
+  pk: 7
+  fields:
+    name: Quarto para empregados
+
+- model: listing.amenity
+  pk: 8
+  fields:
+    name: Piscina
+
+- model: listing.amenity
+  pk: 9
+  fields:
+    name: Mobiliado
+
+- model: listing.amenity
+  pk: 10
+  fields:
+    name: Aquecedor Solar
+
+- model: listing.amenity
+  pk: 11
+  fields:
+    name: Suítes com armários
+
+- model: listing.amenity
+  pk: 12
+  fields:
+    name: Sala de estar
+
+- model: listing.amenity
+  pk: 13
+  fields:
+    name: Churrasqueira
+
+- model: listing.amenity
+  pk: 14
+  fields:
+    name: Despejo
+
+- model: listing.amenity
+  pk: 15
+  fields:
+    name: Sauna
+
+- model: listing.amenity
+  pk: 16
+  fields:
+    name: Condomínio
+
+- model: listing.amenity
+  pk: 17
+  fields:
+    name: Depósito
+
+- model: listing.amenity
+  pk: 18
+  fields:
+    name: Espaço Gourmet
+
+- model: listing.amenity
+  pk: 19
+  fields:
+    name: Sala de Jantar
+
+- model: listing.amenity
+  pk: 20
+  fields:
+    name: Cozinha planejada
+
+- model: listing.amenity
+  pk: 21
+  fields:
+    name: Espaço Office
+
+- model: listing.amenity
+  pk: 22
+  fields:
+    name: Piscina Aquecida
+
+- model: listing.amenity
+  pk: 23
+  fields:
+    name: Jardim
+
+- model: listing.amenity
+  pk: 24
+  fields:
+    name: Escritório
+
+- model: listing.amenity
+  pk: 25
+  fields:
+    name: Sobrado
+
+- model: listing.amenity
+  pk: 25
+  fields:
+    name: Despensa
