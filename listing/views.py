@@ -11,12 +11,28 @@ from .models import Neighbourhood, Condominium, ListingPage, CategoryPage
 def neighbourhoods(request):
     city_slug = request.GET.get('city', None)
 
+    listings_qs = ListingPage.objects.live().filter(city__slug=city_slug)
+
+    # neighbourhoods
+    neighbourhood_ids = listings_qs.exclude(
+        neighbourhood__isnull=True
+    ).order_by(
+        'neighbourhood_id'
+    ).distinct('neighbourhood').values_list('neighbourhood_id', flat=True)
+
     neighbourhoods = Neighbourhood.objects.filter(
-        city__slug=city_slug
+        id__in=neighbourhood_ids,
     ).values_list('slug', 'name')
 
+    # condominiums
+    condominium_ids = listings_qs.exclude(
+        condominium__isnull=True
+    ).order_by(
+        'condominium_id'
+    ).distinct('condominium').values_list('condominium_id', flat=True)
+
     condominiums = Condominium.objects.filter(
-        city__slug=city_slug
+        id__in=condominium_ids,
     ).values_list('slug', 'name')
 
     return HttpResponse(content=json.dumps({
