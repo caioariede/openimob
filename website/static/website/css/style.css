@@ -2156,14 +2156,16 @@ input[type="color"]:focus,
 	background: #ff4b4b;
 }
 
-.three-col {
-    column-count: 3;
-    column-gap: 20px;
+@media (min-width: 768px) {
+    .three-col {
+        column-count: 3;
+        column-gap: 20px;
 
-    -moz-column-count: 3;
-    -moz-column-gap: 20px;
-    -webkit-column-count: 3;
-    -webkit-column-gap: 20px;
+        -moz-column-count: 3;
+        -moz-column-gap: 20px;
+        -webkit-column-count: 3;
+        -webkit-column-gap: 20px;
+    }
 }
 
 .amenities {

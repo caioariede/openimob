@@ -2,16 +2,18 @@
   width: 200px;
   padding: 10px 0; }
 
-.amenities ul li {
-  float: left;
-  width: 33.3%; }
-
-.amenities ul li ul li {
-  float: none;
-  margin-left: 20px; }
-
 .map-widget label {
   display: none; }
 
 .map-widget > div {
   width: 100% !important; }
+
+@media (min-width: 768px) {
+    .amenities ul li {
+      float: left;
+      width: 33.3%; }
+
+    .amenities ul li ul li {
+      float: none;
+      margin-left: 20px; }
+}
