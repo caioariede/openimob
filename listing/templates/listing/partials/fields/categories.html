@@ -1,5 +1,7 @@
 <label for="category">Tipo</label>
 <select class="form-control" name="category" id="category">
+    <option value="">Indiferente</option>
+    <option disabled>-</option>
     {% for category in categories %}
         <option value="{{ category.slug }}">{{ category }}</option>
     {% endfor %}

@@ -31,12 +31,18 @@ def update_querystring(request, **kwargs):
 
 @register.assignment_tag
 def get_listing_categories():
-    return CategoryPage.objects.live()
+    return CategoryPage.objects.live().filter(numchild__gt=0)
 
 
 @register.assignment_tag
 def get_listing_cities():
-    return City.objects.all()
+    listings_qs = ListingPage.objects.live()
+
+    cities_ids = listings_qs.order_by(
+        'city_id'
+    ).distinct('city').values_list('city_id', flat=True)
+
+    return City.objects.filter(pk__in=cities_ids)
 
 
 @register.assignment_tag
