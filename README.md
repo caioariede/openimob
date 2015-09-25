@@ -1,7 +1,7 @@
 # openimob
 An open-source CMS solution for Real Estate websites on top of [Wagtail](https://wagtail.io/). Right now it targets brazilian real estate needs, but the idea is to make it more comprehensive.
 
-Uma solução livre de CMS para sites imobiliários, usando o [Wagtail](https://wagtail.io/) como base.
+**pt-br:** Uma solução livre de CMS para sites imobiliários, usando o [Wagtail](https://wagtail.io/) como base.
 
 ## Requirements
 
