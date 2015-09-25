@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import dj_database_url
 
 PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
@@ -82,6 +83,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
             os.path.join(PROJECT_DIR, 'templates'),
         ],
         'APP_DIRS': True,
@@ -103,11 +105,8 @@ WSGI_APPLICATION = 'openimob.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'openimob',
-        'USER': 'openimob',
-    }
+    'default': dj_database_url.config(
+        default='postgis://openimob:openimob@localhost/openimob'),
 }
 
 
@@ -161,3 +160,6 @@ DECIMAL_SEPARATOR = ','
 USE_THOUSAND_SEPARATOR = True
 
 WAGTAILIMAGES_IMAGE_MODEL = 'dashboard.CustomImage'
+
+GEOS_LIBRARY_PATH = os.environ.get('GEOS_LIBRARY_PATH')
+GDAL_LIBRARY_PATH = os.environ.get('GDAL_LIBRARY_PATH')
