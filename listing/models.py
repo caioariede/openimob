@@ -25,11 +25,21 @@ from .mixins import ListingPageViewMixin
 from .widgets import NeighbourhoodWidget, CondominiumWidget
 
 
+class CityManager(models.Manager):
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
+
 @register_snippet
 class City(models.Model):
     name = models.CharField(max_length=255)
     slug = models.SlugField(max_length=255)
 
+    objects = CityManager()
+
+    """
+    Panels
+    """
     panels = [
         FieldPanel('name'),
         FieldPanel('slug'),
