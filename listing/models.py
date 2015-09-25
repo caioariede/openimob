@@ -154,6 +154,7 @@ class ListingPage(ListingPageViewMixin, Page):
                             verbose_name='Tipos de negócio')
 
     reference = models.CharField(
+        unique=True,
         max_length=12, blank=True, null=True, verbose_name='Referência',
         help_text='Código de identificação do imóvel')
 

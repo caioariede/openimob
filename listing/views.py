@@ -1,6 +1,6 @@
 import json
 
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView
 from django.utils.functional import cached_property
 from django.db.models import Count
@@ -54,6 +54,18 @@ class Search(ListView):
     @cached_property
     def filtered_queryset(self):
         return self.filter_results(self.base_queryset)
+
+    def get(self, request, *args, **kwargs):
+        reference = request.GET.get('reference')
+        if reference:
+            try:
+                listing_page = ListingPage.objects.live().get(
+                    reference=reference)
+            except ListingPage.DoesNotExist:
+                pass
+            else:
+                return HttpResponseRedirect(listing_page.url)
+        return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
         qs = self.filtered_queryset

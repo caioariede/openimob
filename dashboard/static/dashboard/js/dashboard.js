@@ -5,6 +5,8 @@ $(function(){
         if ( ! /pages\/[^\/]+\/listing\/listingpage/.test(window.location.href))
             return;
 
+        var uniqid = Math.random().toString(36).substr(2, 5);
+
         var watch_fields = '[name=city],[name=neighbourhood],[name=condominium],[name=listing_type]';
 
         var _populate = function() {
@@ -14,8 +16,6 @@ $(function(){
                 listing_type = $.map($('[name=listing_type]:checked'), function(e){
                     return $(e).parent().text();
                 }).join(' ');
-
-            var uniqid = Math.random().toString(36).substr(2, 5);
 
             var slug = [
                     city, (condominium || neighbourhood), listing_type, uniqid
@@ -30,6 +30,10 @@ $(function(){
 
         if (typeof original_page_slug == 'undefined') {
             $(watch_fields).click(populate).keyup(populate).change(populate).focus(populate);
+        }
+
+        if ($('#id_reference').val() == '') {
+            $('#id_reference').val(uniqid.toUpperCase());
         }
     }();
 
