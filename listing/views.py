@@ -57,14 +57,24 @@ class Search(ListView):
 
     def get(self, request, *args, **kwargs):
         reference = request.GET.get('reference')
+
         if reference:
+            listings_qs = ListingPage.objects.live()
+
+            if reference.isdigit():
+                listings_qs = listings_qs.extra(
+                    where=['reference::int = %s'], params=[int(reference)])
+            else:
+                listings_qs = listings_qs.filter(
+                    reference__iexact=reference)
+
             try:
-                listing_page = ListingPage.objects.live().get(
-                    reference=reference)
+                listing_page = listings_qs.get()
             except ListingPage.DoesNotExist:
                 pass
             else:
                 return HttpResponseRedirect(listing_page.url)
+
         return super().get(request, *args, **kwargs)
 
     def get_queryset(self):
