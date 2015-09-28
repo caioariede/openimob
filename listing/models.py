@@ -1,6 +1,7 @@
 from django.contrib.gis.db import models
 from django.conf import settings
 from django.templatetags.l10n import localize
+from django.template.defaultfilters import strip_tags
 from django.core.urlresolvers import reverse
 from django.utils.functional import cached_property
 from django import forms
@@ -228,6 +229,10 @@ class ListingPage(ListingPageViewMixin, Page):
             (amenity, amenity.pk in listing_amenities)
             for amenity in Amenity.objects.all()
         ]
+
+    @cached_property
+    def raw_details(self):
+        return strip_tags(self.details)
 
     @cached_property
     def cover(self):

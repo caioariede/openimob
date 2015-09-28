@@ -135,7 +135,7 @@ var min_max_prices_json = {% print_listing_min_max_prices_json %};
                                                 {% endif %}
                                             {% endwith %}
 
-                                            {% if self.details %}
+                                            {% if self.raw_details %}
                                                 <h3>Descrição</h3>
                                                 {{ self.details|safe|linebreaks }}
                                             {% endif %}
