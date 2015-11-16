@@ -1,0 +1,7 @@
+Mensagem enviada através do site.
+
+Nome: {{ name }}
+Email: {{ email }}
+Mensagem:
+
+{{ body }}

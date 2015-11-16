@@ -1,6 +1,8 @@
 {% load static wagtailuserbar %}
 
 {% load listing_tags %}
+{% load bootstrap3 %}
+{% load contact_form_tags %}
 
 {% get_listing_categories as categories %}
 
@@ -15,7 +17,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
         <meta name="description" content="arillo is responsive html real estate theme">
-        <meta name="author" content="afriq yasin ramadhan">
         <link rel="shortcut icon" href="{% static 'website/img/favicon.png' %}">
 
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% endblock %}</title>
@@ -69,7 +70,7 @@
                                 {% endfor %}
                             </ul>
                         </li>
-                        <li><a href="#" class="signup" data-toggle="modal" data-target="#modal-signup">Entre em contato</a></li>
+                        <li><a href="#" class="contact-form" data-toggle="modal" data-target="#modal-contact-form">Entre em contato</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container -->
@@ -127,74 +128,28 @@
         </div>
         <!-- end:footer -->
 
-        <!-- begin:modal-signin -->
-        <div class="modal fade" id="modal-signin" tabindex="-1" role="dialog" aria-labelledby="modal-signin" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
+        <!-- begin:modal-contact-form -->
+        <div class="modal fade" id="modal-contact-form" tabindex="-1" role="dialog" aria-labelledby="modal-contact-form" aria-hidden="true">
+            <div class="modal-dialog">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Sign in</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <label for="emailAddress">Email address</label>
-                                <input type="email" class="form-control input-lg" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" class="form-control input-lg" placeholder="Password">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="forget"> Keep me logged in
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <p>Don't have account ? <a href="#modal-signup"  data-toggle="modal" data-target="#modal-signup">Sign up here.</a></p>
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign in">
-                    </div>
+                    <form role="form" method="post" action="{% url "contact_form" %}">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Entre em contato</h4>
+                        </div>
+                        <div class="modal-body">
+                            {% get_contact_form as contact_form %}
+                            {% bootstrap_form contact_form %}
+                            {% csrf_token %}
+                        </div>
+                        <div class="modal-footer">
+                            <input type="submit" class="btn btn-success btn-block btn-lg" value="Enviar">
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <!-- end:modal-signin -->
-
-        <!-- begin:modal-signup -->
-        <div class="modal fade" id="modal-signup" tabindex="-1" role="dialog" aria-labelledby="modal-signup" aria-hidden="true">
-            <div class="modal-dialog modal-sm">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title">Sign up</h4>
-                    </div>
-                    <div class="modal-body">
-                        <form role="form">
-                            <div class="form-group">
-                                <input type="email" class="form-control input-lg" placeholder="Enter email">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control input-lg" placeholder="Password">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" class="form-control input-lg" placeholder="Confirm Password">
-                            </div>
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox" name="agree"> Agree to our <a href="#">terms of use</a> and <a href="#">privacy policy</a>
-                                </label>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <p>Already have account ? <a href="#modal-signin" data-toggle="modal" data-target="#modal-signin">Sign in here.</a></p>
-                        <input type="submit" class="btn btn-primary btn-block btn-lg" value="Sign up">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- end:modal-signup -->
+        <!-- end:modal-contact-form -->
 
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}

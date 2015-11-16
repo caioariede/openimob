@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'location_field',
     'input_mask',
     'django_select2',
+    'bootstrap3',
 
     'django.contrib.admin',
     'django.contrib.auth',
